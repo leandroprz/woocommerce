@@ -11,8 +11,9 @@ jQuery(function ($) {
     $("body").append('<div id="mbbx-container"></div>');
 
     // Intercept form button
-    form.on('checkout_place_order_mobbex', function (event) {
-        return executePayment(event);
+    form.on('click', '[name=woocommerce_checkout_place_order]', function (event) {
+        if ($('[name=payment_method]:checked').val() == 'mobbex')
+            return executePayment(event);
     });
 
     // Some customers (Inky) have themes where the button is outside the form
